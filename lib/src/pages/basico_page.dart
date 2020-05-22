@@ -9,8 +9,9 @@ class BasicoPage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      body: Column(
-        children: <Widget>[
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
 
           _crearImagen(),
           
@@ -20,35 +21,46 @@ class BasicoPage extends StatelessWidget {
 
           _crearTexto(),
 
+          _crearTexto(),
+
+          _crearTexto(),
+
         ],
+        ),
       ),
     );
   }
 
   Widget _crearImagen(){
-    return Image(
-      image: NetworkImage('https://www.funbam.org/sites/default/files/2018-06/YNCL_51-1.jpg'),
+    return Container(
+      width: double.infinity,//Toma todo el ancho
+      child: Image(
+        image: NetworkImage('https://www.funbam.org/sites/default/files/2018-06/YNCL_51-1.jpg'),
+        fit: BoxFit.cover,
+      ),
     );
   }
 
   Widget _crearTitulo() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 30.0, vertical:20.0),
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text('Manuel Antonio', style: estiloTitulo,),
-                SizedBox(height:7.0),
-                Text('Puntarenas Norte', style: estiloSubtitulo),
-              ],
+    return SafeArea(
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 30.0, vertical:20.0),
+        child: Row(
+          children: <Widget>[
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text('Manuel Antonio', style: estiloTitulo,),
+                  SizedBox(height:7.0),
+                  Text('Puntarenas Norte', style: estiloSubtitulo),
+                ],
+              ),
             ),
-          ),
-          Icon(Icons.star, color:Colors.red, size:30.0, ),
-          Text('41', style: TextStyle(fontSize:20.0))
-        ],
+            Icon(Icons.star, color:Colors.red, size:30.0, ),
+            Text('41', style: TextStyle(fontSize:20.0))
+          ],
+        ),
       ),
     );
   }
@@ -76,11 +88,13 @@ class BasicoPage extends StatelessWidget {
   }
 
   Widget _crearTexto() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 40.0, vertical:20.0),
-      child: Text(
-        'In laborum exercitation excepteur qui id. Proident irure commodo consectetur ad aliqua nostrud proident est eu officia dolore excepteur. Tempor magna eu est irure enim cillum. Mollit id excepteur amet ad culpa enim. Occaecat exercitation dolor occaecat est amet sunt mollit laboris ex id tempor veniam. Aute Lorem aute incididunt excepteur officia nisi Lorem ipsum exercitation.',
-        textAlign: TextAlign.justify,
+    return SafeArea(
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 40.0),
+        child: Text(
+          'In laborum exercitation excepteur qui id. Proident irure commodo consectetur ad aliqua nostrud proident est eu officia dolore excepteur. Tempor magna eu est irure enim cillum. Mollit id excepteur amet ad culpa enim. Occaecat exercitation dolor occaecat est amet sunt mollit laboris ex id tempor veniam. Aute Lorem aute incididunt excepteur officia nisi Lorem ipsum exercitation.',
+          textAlign: TextAlign.justify,
+        ),
       ),
     );
   }
