@@ -20,7 +20,8 @@ class BotonesPage extends StatelessWidget {
             ),
           )
         ],
-      )
+      ),
+      bottomNavigationBar: _bottomNavigationBar(context),
     );
   }
 
@@ -86,12 +87,43 @@ class BotonesPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text('Classify Transaction', style: TextStyle(color: Colors.white, fontSize: 28.0, fontWeight: FontWeight.bold),),
+            Text('Classify Transaction', 
+              style: TextStyle(color: Colors.white, fontSize: 28.0, fontWeight: FontWeight.bold),
+            ),
             SizedBox( height: 10.0),
-            Text('Classify this transaction into a particular category', style: TextStyle(color: Colors.white, fontSize: 18.0),)
+            Text('Classify this transaction into a particular category', 
+              style: TextStyle(color: Colors.white, fontSize: 18.0),
+            )
           ],
         ),
       ),
+    );
+  }
+
+  Widget _bottomNavigationBar(BuildContext context){
+    return  Theme(
+      data: Theme.of(context).copyWith(
+        // Aqui ponemos todos los colores y personalizaciones
+        canvasColor: Color.fromRGBO(55, 57, 84, 1.0),
+        primaryColor: Colors.pinkAccent,
+        textTheme: Theme.of(context).textTheme.copyWith(caption: TextStyle(color: Color.fromRGBO(116, 117, 152, 1.0)))
+      ), 
+      child: BottomNavigationBar( //Lo que voy a mostrar realmente
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.calendar_today, size: 30.0),
+            title: Container()
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.show_chart, size: 30.0),
+            title: Container()
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.supervised_user_circle, size: 30.0),
+            title: Container()
+          ),
+        ]
+        ),
     );
   }
 }
