@@ -1,6 +1,9 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+
+
+import 'dart:math';
+import 'dart:ui';
+
 
 class BotonesPage extends StatelessWidget {
   @override
@@ -15,6 +18,7 @@ class BotonesPage extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 _titulos(),
+                _botonesRedondeados(),
 
               ]
             ),
@@ -124,6 +128,60 @@ class BotonesPage extends StatelessWidget {
           ),
         ]
         ),
+    );
+  }
+
+  Widget _botonesRedondeados() {
+    return Table(
+      children:[ // Los tableRow deben de tener la misma cantidad de elementos
+        TableRow(
+          children: [
+            _crearBotonRedondeado(Colors.lightBlue, Icons.dashboard, 'General'),
+            _crearBotonRedondeado(Colors.purpleAccent, Icons.directions_bus, 'Transport'),
+          ]
+        ),
+        TableRow(
+          children: [
+            _crearBotonRedondeado(Colors.pinkAccent, Icons.shopping_basket, 'Shopping'),
+            _crearBotonRedondeado(Colors.orangeAccent, Icons.receipt, 'Bills'),
+          ]
+        ),
+        TableRow(
+          children: [
+            _crearBotonRedondeado(Colors.blueAccent, Icons.movie,'Entertaiment'),
+            _crearBotonRedondeado(Colors.greenAccent, Icons.fastfood, 'Grocery'),
+          ]
+        ),
+      ],
+    );
+  }
+
+  Widget _crearBotonRedondeado(Color color, IconData icon, String text) {
+    return ClipRect(
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+        child: Container(
+          height: 160.0,
+          margin: EdgeInsets.all(20.0),
+          decoration: BoxDecoration(
+            color: Color.fromRGBO(62, 66, 107, 0.7),
+            borderRadius: BorderRadius.circular(15.0)
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              SizedBox(height:5.0),
+              CircleAvatar(
+                backgroundColor: color,
+                radius: 35.0,
+                child: Icon(icon, color: Colors.white,),
+              ),
+              Text(text, style: TextStyle(color: color)),  
+              SizedBox(height:5.0),
+            ]
+          ),
+        ),
+      ),
     );
   }
 }
